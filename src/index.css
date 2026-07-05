@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+
+/* ============ Design tokens (The Midnight palette) ============ */
+@theme {
+  --color-midnight: #0a0c1e; /* page background — deep navy black */
+  --color-dusk: #131636; /* panel navy */
+  --color-horizon: #1d2150; /* borders, dividers */
+  --color-neon-pink: #ff2d78; /* primary neon */
+  --color-neon-red: #ff4d5e; /* neon-sign warm edge */
+  --color-neon-cyan: #5ae5ff; /* secondary neon (The Midnight's cyan) */
+  --color-sunset: #ff8a3d; /* sunset gradient warm stop */
+  --color-moon: #e9eaf5; /* primary text */
+  --color-fog: #9aa0c3; /* secondary text */
+
+  --font-neon: 'Monoton', cursive;
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --animate-flicker: flicker 6s infinite;
+  --animate-marquee: marquee 36s linear infinite;
+
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.55; }
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(calc(-50% - 0.75rem)); }
+  }
+}
+
+/* ============ Base ============ */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-midnight text-moon font-body antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+::selection {
+  @apply bg-neon-pink text-midnight;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-neon-cyan);
+  outline-offset: 3px;
+}
+
+/* ============ Custom effects Tailwind utilities can't express ============ */
+
+/* Neon tube glow for the Monoton headline */
+.neon-pink-glow {
+  color: #ffd9e6;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 18px var(--color-neon-pink),
+    0 0 42px var(--color-neon-pink),
+    0 0 90px var(--color-neon-red);
+}
+.neon-cyan-glow {
+  color: #dffaff;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 18px var(--color-neon-cyan),
+    0 0 42px var(--color-neon-cyan),
+    0 0 90px #2bb8d9;
+}
+.neon-footer-glow {
+  color: #ffd9e6;
+  text-shadow:
+    0 0 8px var(--color-neon-pink),
+    0 0 26px var(--color-neon-red);
+}
+
+/* Retro sunset sun with scanline mask */
+.retro-sun {
+  background: linear-gradient(var(--color-sunset), var(--color-neon-pink) 70%);
+  filter: blur(1px);
+  -webkit-mask: repeating-linear-gradient(to bottom, #000 0 12px, transparent 12px 18px);
+  mask: repeating-linear-gradient(to bottom, #000 0 12px, transparent 12px 18px);
+}
+
+/* Perspective grid floor */
+.grid-floor {
+  background:
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-neon-pink) 18%, transparent),
+      transparent
+    ),
+    repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-neon-cyan) 35%, transparent) 0 1px,
+      transparent 1px 64px
+    ),
+    repeating-linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-neon-cyan) 35%, transparent) 0 1px,
+      transparent 1px 34px
+    );
+  transform: perspective(240px) rotateX(48deg);
+  transform-origin: bottom;
+  border-top: 1px solid color-mix(in srgb, var(--color-neon-cyan) 45%, transparent);
+}
+
+/* Edge fade on the scrolling stories */
+.marquee-mask {
+  -webkit-mask: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-mask {
+    -webkit-mask: none;
+    mask: none;
+  }
+  .animate-marquee {
+    animation: none !important;
+    flex-wrap: wrap;
+    width: auto !important;
+    padding: 0 clamp(1.25rem, 5vw, 3rem);
+  }
+}
