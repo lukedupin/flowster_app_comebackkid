@@ -4,15 +4,26 @@ import { useState } from 'react';
  * Lightweight YouTube embed: shows the video thumbnail with a neon play
  * button, and only loads the real iframe (autoplaying) once clicked.
  */
-export default function YouTubeEmbed({ videoId, title = 'Story video' }) {
+export default function YouTubeEmbed({
+  videoId,
+  title = 'Story video',
+  start,
+  end,
+  onPlay,
+  bounce = false,
+}) {
   const [playing, setPlaying] = useState(false);
 
   if (playing) {
+    const params = new URLSearchParams({ autoplay: '1' });
+    if (start != null) params.set('start', String(start));
+    if (end != null) params.set('end', String(end));
+
     return (
       <div className="aspect-video w-full overflow-hidden rounded-md border border-horizon">
         <iframe
           className="h-full w-full"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -27,9 +38,12 @@ export default function YouTubeEmbed({ videoId, title = 'Story video' }) {
       onClick={(e) => {
         e.stopPropagation();
         setPlaying(true);
+        onPlay?.();
       }}
       aria-label={`Play video: ${title}`}
-      className="group relative block aspect-video w-full cursor-pointer overflow-hidden rounded-md border border-horizon bg-dusk transition-colors hover:border-neon-pink"
+      className={`group relative block aspect-video w-full cursor-pointer overflow-hidden rounded-md border border-horizon bg-dusk transition-colors hover:border-neon-pink ${
+        bounce ? 'animate-bounce' : ''
+      }`}
     >
       <img
         src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}

@@ -86,13 +86,13 @@ export default function StoryDetail() {
       </div>
 
       {/* Extra videos */}
+      {allVideos.length > 0 && (
       <div className="mt-12 border-t border-horizon pt-10">
         <h2 className="mb-2 font-mono text-xs tracking-[0.32em] text-neon-cyan">
-          THE SOUNDTRACK
+          OTHER VIDEOS
         </h2>
         <p className="mb-6 text-[0.95rem] text-fog">
-          Add the songs and videos that belong with this story. Paste a YouTube
-          link and it becomes playable right here.
+          These videos were added by the storyteller.
         </p>
 
         {allVideos.length > 0 && (
@@ -102,30 +102,8 @@ export default function StoryDetail() {
             ))}
           </div>
         )}
-
-        <form onSubmit={handleAddVideo} className="flex flex-wrap gap-3">
-          <label htmlFor="yt-url" className="sr-only">
-            YouTube link
-          </label>
-          <input
-            id="yt-url"
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://www.youtube.com/watch?v=..."
-            className="min-w-0 flex-1 rounded-[3px] border border-horizon bg-midnight px-4 py-3 font-mono text-[0.82rem] text-moon placeholder:text-fog/50 focus:border-neon-cyan focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="cursor-pointer rounded-[3px] border border-neon-cyan px-5 py-3 font-mono text-[0.82rem] tracking-[0.16em] text-neon-cyan transition-colors hover:bg-neon-cyan hover:text-midnight"
-          >
-            EMBED VIDEO
-          </button>
-        </form>
-        {error && (
-          <p className="mt-3 font-mono text-[0.78rem] text-neon-red">{error}</p>
-        )}
       </div>
+      )}
     </section>
   );
 }

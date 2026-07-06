@@ -27,7 +27,7 @@ export default function Hero() {
 
       <div className="relative z-[2] mt-10 flex flex-wrap justify-center gap-4">
         <Link
-          to="/tell-your-story"
+          to="/stories"
           className="rounded-[3px] bg-neon-pink px-6 py-3.5 font-mono text-[0.82rem] tracking-[0.16em] text-midnight no-underline shadow-[0_0_22px_rgba(255,45,120,0.55)] transition hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(255,45,120,0.8)]"
         >
           SHARE YOUR STORY

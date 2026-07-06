@@ -9,13 +9,13 @@ export default function Stories() {
     <section className="mx-auto max-w-5xl px-5 py-16 sm:px-12 md:py-24">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
         <div>
-          <Eyebrow>THE ARCHIVE</Eyebrow>
+          <Eyebrow>CLEAR EYED</Eyebrow>
           <h1 className="font-display text-[clamp(1.8rem,5vw,3rem)] font-semibold tracking-[0.14em]">
             COMEBACK STORIES
           </h1>
           <p className="mt-3 max-w-xl text-fog">
-            Real falls. Real get-back-ups. Watch them, read them, and send some
-            love with a reaction.
+            We all <span className="text-neon-pink">struggle</span>. Real get-back-up stories. Watch them, read them, and send some
+            love with a reaction. <span className="text-neon-cyan">Inspire</span> someone with your own story.
           </p>
         </div>
         <Link
