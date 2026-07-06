@@ -32,12 +32,6 @@ export default function Hero() {
         >
           SHARE YOUR STORY
         </Link>
-        <a
-          href="#WHAT"
-          className="rounded-[3px] border border-horizon px-6 py-3.5 font-mono text-[0.82rem] tracking-[0.16em] text-fog no-underline transition-colors hover:border-neon-cyan hover:text-neon-cyan"
-        >
-          WHAT IS THIS?
-        </a>
       </div>
 
       {/* Retro horizon: scanline sun + perspective grid */}
