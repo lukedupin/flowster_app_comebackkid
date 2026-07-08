@@ -13,10 +13,10 @@ const LENSES = [
 ];
 
 const VOICES = [
-  { id: 'warm', name: 'Warm & Grounded' },
-  { id: 'bright', name: 'Bright & Energetic' },
-  { id: 'deep', name: 'Deep & Cinematic' },
-  { id: 'soft', name: 'Soft & Reflective' },
+  { id: 'warm', name: 'Warm & Grounded (male)' },
+  { id: 'bright', name: 'Bright & Energetic (female)' },
+  { id: 'deep', name: 'Deep & Cinematic (male)' },
+  { id: 'soft', name: 'Soft & Reflective (female)' },
 ];
 
 const MAX_VIDEOS = 5;
@@ -123,8 +123,7 @@ export default function FinalTouch({ onComplete }) {
           <span className="text-neon-pink">EMBED</span> YOUTUBE <span className="text-neon-cyan">VIDEOS</span>
         </h2>
         <p className="mb-4 text-fog">
-          Pick any number of YouTube videos that will be embedded into your story, up to{' '}
-          {MAX_VIDEOS}.
+          Pick any number of YouTube videos that will be embedded into your story.
         </p>
 
         <div className="flex gap-3">
